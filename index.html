@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulario para empresa</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body id="body">
+     <!-- Contenido original del body -->
+     <div id="originalContent">
+            <h1>Cotizador</h1>
+            <form action="index.html" method="post" id="form">
+                <label for="empresa">Nombre de la empresa:</label>
+                <input type="text" id="nombreEmpresa" name="empresa">
+                <br><br>
+                <label for="cliente">Nombre del cliente:</label>
+                <input type="text" id="nombreCliente" name="cliente">
+                <br><br>
+                <table id="services">
+                <tr>
+                    <th>Concepto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                </tr>
+                <tr>
+                    <td><input type="text" name="concepto1"></td>
+                    <td><input type="number" name="cantidad1"></td>
+                    <td><input type="number" name="precio1"></td>
+                </tr>
+                </table>
+                <br>
+                <button type="button" id="addRow">Añadir fila</button>
+                <br><br>
+                <label for="tiempo">Tiempo del proyecto:</label>
+                <input type="range" id="tiempoProyecto" name="tiempo" min="1" max="3">
+                <br><br>
+                <!-- <input type="submit" value="Enviar" onclick="replaceContent()"> -->
+                <input type="submit" value="Enviar" >
+            </form>
+            <input type="submit" value="Generar Factura" onclick="switchBodyOn()">
+      </div>
+      <div id="result" style="display:none;"></div>
+  <script src="script.js"></script>
+  <!-- script para controlar el body -->
+</body>
+<script>
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        document.getElementById("addRow").click();
+      }
+    });
+  </script>
+
+<script>
+    function switchBodyOn() {
+      document.getElementById("originalContent").style.display = "none";
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
+<!-- <script>
+    let originalContent;
+  
+    function replaceContent() {
+      originalContent = document.getElementById("body").innerHTML;
+      document.getElementById("body").innerHTML = '<p>Contenido reemplazado</p><button onclick="restoreContent()">Restaurar contenido original</button>';
+    }
+  
+    function restoreContent() {
+      document.getElementById("body").innerHTML = originalContent;
+    }
+  </script> -->
+</html>
