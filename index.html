@@ -100,15 +100,13 @@
                   </div>
                   <div class="div3">
                     <label for="enviar">&nbsp;</label>
-                    <input type="submit" value="Enviar" >
+                    <input type="submit" value="Enviar" onclick="switchBodyOn()">
                   </div>
-                  <div class="div4">
-                    <label for="generar">&nbsp;</label>
-                    <input type="submit" value="Generar Factura" onclick="switchBodyOn()">
-                  </div>
+                  
                 </div>
                 <!-- <input type="submit" value="Enviar" onclick="replaceContent()"> -->
             </form>
+
       </div>
       <div id="result" style="display:none;"></div>
   <script src="script.js"></script>
@@ -128,16 +126,5 @@
       document.getElementById("result").style.display = "block";
     }
   </script>
-<!-- <script>
-    let originalContent;
-  
-    function replaceContent() {
-      originalContent = document.getElementById("body").innerHTML;
-      document.getElementById("body").innerHTML = '<p>Contenido reemplazado</p><button onclick="restoreContent()">Restaurar contenido original</button>';
-    }
-  
-    function restoreContent() {
-      document.getElementById("body").innerHTML = originalContent;
-    }
-  </script> -->
+
 </html>
