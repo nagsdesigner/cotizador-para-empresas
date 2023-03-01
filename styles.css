@@ -355,3 +355,27 @@ table {
       margin-right: 1rem;
     }
   }
+
+  @media print {
+    @page {
+      margin: 0;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    * {
+      visibility: hidden;
+    }
+
+    .printable-content, .printable-content * {
+      visibility: visible;
+    }
+
+    .printable-content {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
