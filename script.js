@@ -35,15 +35,12 @@ const correoCliente = document.getElementById("correo-cliente");
 
 const tiempoProyecto = document.getElementById("tiempoProyecto");
 const valorIva = document.getElementById("valorIva");
-// datos cotizacion
-const services = [];
-const precios = [];
 
 form.addEventListener("submit", function(event) {
   event.preventDefault();
   const fechaCotiValue = fechaCoti.value;
   const validoHastaValue = validoHasta.value;
-  const numCoti = numCotizacion.value;
+  const numCotiValue = numCotizacion.value;
   const nombreEmpresaValue = nombreEmpresa.value;
   const direccionEmpresaValue = direccionEmpresa.value;
   const celularEmpresaValue = celularEmpresa.value;
@@ -59,6 +56,8 @@ form.addEventListener("submit", function(event) {
 
   const table = document.getElementById("services");
   const rows = table.rows;
+  const services = [];
+  const precios = [];
   for (let i = 1; i < rows.length; i++) {
     const cells = rows[i].cells;
     const concepto = cells[0].children[0].value;
@@ -93,7 +92,7 @@ form.addEventListener("submit", function(event) {
   <img src="logo.png" alt="" width="100px" height="100px">
   <h3>Fecha: ${fechaCotiValue}</h3>
   <h3>Valido hasta: ${validoHastaValue}</h3>
-  <h3>Número de cotización: ${numCoti}</h3>
+  <h3>Número de cotización: ${numCotiValue}</h3>
 
   <h1>Información de la empresa:</h1>
   <h2>Nombre: ${nombreEmpresaValue}</h2>
@@ -139,7 +138,27 @@ form.addEventListener("submit", function(event) {
   </table>
 `;
 
-document.getElementById("result").innerHTML = result;
+const save = {
+  fecha: fechaCotiValue,
+  validoHasta: validoHastaValue,
+  numeroCotizacion: numCotiValue,
+  empresa: nombreEmpresaValue,
+  direccionEmpresa: direccionEmpresaValue,
+  celularEmpresa: celularEmpresaValue,
+  correoEmpresa: correoEmpresaValue,
+  nombreCliente: nombreClienteValue,
+  direccionCliente: direccionClienteValue,
+  celularCliente: celularClienteValue,
+  correoCliente: correoClienteValue,
+  tiempoProyecto: tiempoProyectoValue,
+  valorIva: valorIvaValue,
+  services: services,
+  sumaPrecios: sumaPrecios,
+}
+
+localStorage.setItem("cotizador", JSON.stringify(save));
+
+//document.getElementById("result").innerHTML = result;
 
 });
 

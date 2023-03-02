@@ -8,7 +8,7 @@
      <!-- Contenido original del body -->
      <div id="originalContent">
             <h1>Cotizador</h1>
-            <form action="index.html" method="post" id="form">
+            <form method="post" id="form">
               <fieldset>
                 <legend>Información de la cotización</legend>
                 <div class="parent">
@@ -122,8 +122,9 @@
 
 <script>
     function switchBodyOn() {
-      document.getElementById("originalContent").style.display = "none";
-      document.getElementById("result").style.display = "block";
+      //document.getElementById("originalContent").style.display = "none";
+      //document.getElementById("result").style.display = "block";
+      window.open("preview.html", "Preview", "popup");
     }
   </script>
 
