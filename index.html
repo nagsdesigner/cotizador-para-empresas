@@ -9,44 +9,70 @@
      <div id="originalContent">
             <h1>Cotizador</h1>
             <form action="index.html" method="post" id="form">
-
               <fieldset>
                 <legend>Información de la cotización</legend>
-                <br><br>
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" name="fecha">
-                <label for="valido-hasta">Válido hasta:</label>
-                <input type="date" id="valido-hasta" name="valido-hasta">
-                <label for="numero-cotizacion">Número de cotización:</label>
-                <input type="text" id="numero-cotizacion" name="numero-cotizacion">
+                <div class="parent">
+                  <div class="div1">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha">
+                  </div>
+                  <div class="div2">
+                    <label for="valido-hasta">Válido hasta:</label>
+                    <input type="date" id="valido-hasta" name="valido-hasta">
+                  </div>
+                  <div class="div3">
+                    <label for="numero-cotizacion">Número de cotización:</label>
+                    <input type="text" id="numero-cotizacion" name="numero-cotizacion">
+                  </div>
+                </div>
               </fieldset>
               <br><br>
               <fieldset>
-                <label>Información de la empresa:</label>
-                <br><br>
-                <label for="empresa">Nombre</label>
-                <input type="text" id="nombreEmpresa" name="empresa">
-                <label for="direccion-empresa">Dirección:</label>
-                <input type="text" id="direccion-empresa" name="direccion-empresa">
-                <label for="celular-empresa">Celular:</label>
-                <input type="tel" id="celular-empresa" name="celular-empresa">
-                <label for="correo-empresa">Correo:</label>
-                <input type="email" id="correo-empresa" name="correo-empresa">
+                <legend>Información de la empresa:</legend>
+                <div class="parent">
+                  <div class="div1">
+                    <label for="empresa">Nombre</label>
+                    <input type="text" id="nombreEmpresa" name="empresa">
+                  </div>
+                  <div class="div2">
+                    <label for="direccion-empresa">Dirección:</label>
+                    <input type="text" id="direccion-empresa" name="direccion-empresa">
+                  </div>
+                  <div class="div3">
+                    <label for="celular-empresa">Celular:</label>
+                    <input type="tel" id="celular-empresa" name="celular-empresa">
+                  </div>
+                  <div class="div4">
+                    <label for="correo-empresa">Correo:</label>
+                    <input type="email" id="correo-empresa" name="correo-empresa">
+                  </div>
+                </div>
+
               </fieldset>
               <br><br>
               <fieldset>
-                <label>Información del cliente:</label>
-                <br><br>
-                <label for="cliente">Nombre</label>
-                <input type="text" id="nombreCliente" name="cliente">
-                <label for="direccion-cliente">Dirección:</label>
-                <input type="text" id="direccion-cliente" name="direccion-cliente">
-                <label for="celular-cliente">Celular:</label>
-                <input type="tel" id="celular-cliente" name="celular-cliente">
-                <label for="correo-cliente">Correo:</label>
-                <input type="email" id="correo-cliente" name="correo-cliente">
+                <legend>Información del cliente:</legend>
+                <div class="parent">
+                  <div class="div1">
+                    <label for="cliente">Nombre</label>
+                    <input type="text" id="nombreCliente" name="cliente">
+                  </div>
+                  <div class="div2">
+                    <label for="direccion-cliente">Dirección:</label>
+                    <input type="text" id="direccion-cliente" name="direccion-cliente">
+                  </div>
+                  <div class="div3">
+                    <label for="celular-cliente">Celular:</label>
+                    <input type="tel" id="celular-cliente" name="celular-cliente">
+                  </div>
+                  <div class="div4">
+                    <label for="correo-cliente">Correo:</label>
+                    <input type="email" id="correo-cliente" name="correo-cliente">
+                  </div>
+                </div>
               </fieldset>
                 <br><br>
+                <button type="button" id="addRow">Añadir fila</button>
                 <table id="services">
                   <tr>
                       <th>Producto</th>
@@ -62,20 +88,25 @@
                 </tr>
                
                 </table>
-                <br>
-                <button type="button" id="addRow">Añadir fila</button>
                 <br><br>
-                <label for="tiempo">Tiempo del proyecto:</label>
-                <input type="range" id="tiempoProyecto" name="tiempo" min="1" max="3">
-                <br><br>
-                <label for="tiempo">IVA Añadido</label>
-                <input type="number" id="valorIva" name="valorIva">
-                <br><br>
+                <div class="parent">
+                  <div class="div1">
+                    <label for="tiempo">Tiempo del proyecto:</label>
+                    <input type="range" id="tiempoProyecto" name="tiempo" min="1" max="3">
+                  </div>
+                  <div class="div2">
+                    <label for="valorIva">IVA Añadido</label>
+                    <input type="number" id="valorIva" name="valorIva">
+                  </div>
+                  <div class="div3">
+                    <label for="enviar">&nbsp;</label>
+                    <input type="submit" value="Generar" onclick="switchBodyOn()">
+                  </div>
+                  
+                </div>
                 <!-- <input type="submit" value="Enviar" onclick="replaceContent()"> -->
-                <input type="submit" value="Enviar" >
             </form>
-            <br><br>
-            <input type="submit" value="Generar Factura" onclick="switchBodyOn()">
+
       </div>
       <div id="result" style="display:none;"></div>
   <script src="script.js"></script>
@@ -95,16 +126,5 @@
       document.getElementById("result").style.display = "block";
     }
   </script>
-<!-- <script>
-    let originalContent;
-  
-    function replaceContent() {
-      originalContent = document.getElementById("body").innerHTML;
-      document.getElementById("body").innerHTML = '<p>Contenido reemplazado</p><button onclick="restoreContent()">Restaurar contenido original</button>';
-    }
-  
-    function restoreContent() {
-      document.getElementById("body").innerHTML = originalContent;
-    }
-  </script> -->
+
 </html>
