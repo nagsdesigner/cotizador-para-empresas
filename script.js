@@ -82,6 +82,7 @@ form.addEventListener("submit", function(event) {
  // sumar los precios
 
  const sumaPrecios = precios.reduce((a, b) => parseInt(a) + parseInt(b), 0);
+ const vTotal = parseInt(sumaPrecios) + parseInt(valorIvaValue);
 //  console.log("Suma de precios:", sumaPrecios);
  
 
@@ -127,7 +128,7 @@ form.addEventListener("submit", function(event) {
       <th> </th>
       <th> </th>
       <th> </th>
-      <th>Total ${sumaPrecios}</th>
+      <th>Subtotal: ${sumaPrecios}</th>
     </tr>
 
     <tr>
@@ -135,6 +136,12 @@ form.addEventListener("submit", function(event) {
       <th> </th>
       <th> </th>
       <th> Iva: ${valorIvaValue} </th>
+    </tr>
+    <tr>
+      <th></th>
+      <th> </th>
+      <th> </th>
+      <th> Total: ${vTotal} </th>
     </tr>
   </table>
 `;
