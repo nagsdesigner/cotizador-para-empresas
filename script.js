@@ -1,6 +1,25 @@
 const table = document.getElementById("services");
 const addRowButton = document.getElementById("addRow");
 let rowCount = 1;
+// espacio pruebas 
+
+function calcularSub (cantidad, preciou) {
+  calculoSubtotal = parseInt (cantidad) * parseInt (preciou) 
+  console.log (calculoSubtotal);
+
+  let table = document.getElementById("services");
+  let rows = table.rows;
+  if (rowCount < 20) {
+    let selectorr = `subTotal${rowCount + 1}`;
+/*     document.querySelector(selectorr).value = calculoSubtotal;*/    
+    var elemento = document.getElementById("subTotal");
+    elemento.value = calculoSubtotal;
+  }
+   
+  
+}
+
+//--------------------
 
 addRowButton.addEventListener("click", function() {
   if (rowCount < 20) {
@@ -10,10 +29,11 @@ addRowButton.addEventListener("click", function() {
     const precioCell = newRow.insertCell(2);
     const subtotalCell = newRow.insertCell(3);
     conceptoCell.innerHTML = `<input type="text" name="concepto${rowCount + 1}">`;
-    cantidadCell.innerHTML = `<input type="number" name="cantidad${rowCount + 1}">`;
-    precioCell.innerHTML = `<input type="number" name="precio${rowCount + 1}">`;
-    subtotalCell.innerHTML = `<input type="number" name="precio${rowCount + 1}">`;
+    cantidadCell.innerHTML = `<input type="number" name="cantidad${rowCount + 1}" id="cantidad${rowCount + 1}" onchange="calcularSub(this.value, document.getElementById('preciou${rowCount + 1}').value)">`;
+    precioCell.innerHTML = `<input type="number" name="precio${rowCount + 1}" id="preciou${rowCount + 1}" onchange="calcularSub(document.getElementById('cantidad${rowCount + 1}').value, this.value)">`;
+    subtotalCell.innerHTML = `<input type="number" name="precio${rowCount + 1}" value="0" id="subTotal${rowCount + 1}" readonly>`;
     rowCount++;
+
   }
 });
 

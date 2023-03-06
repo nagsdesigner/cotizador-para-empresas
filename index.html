@@ -82,9 +82,10 @@
                   </tr>
                 <tr>
                     <td><input type="text" name="concepto1"></td>
-                    <td><input type="number" name="cantidad1"></td>
-                    <td><input type="number" name="preciounitario1"></td>
-                    <td id="total"><input type="number" name="precio1"></td>
+                    <td><input type="number" name="cantidad1" id="cantidad" onchange="calcularSub(this.value, document.getElementById('preciou').value)"></td>
+                    <td><input type="number" name="preciounitario1" id="preciou" onchange="calcularSub(document.getElementById('cantidad').value, this.value)"></td>
+
+                    <td id="total"><input type="number" name="precio1" readonly id="subTotal" value="0"></td>
                 </tr>
                
                 </table>
