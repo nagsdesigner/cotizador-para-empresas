@@ -3,16 +3,17 @@ const addRowButton = document.getElementById("addRow");
 let rowCount = 1;
 // espacio pruebas 
 
-function calcularSub (cantidad, preciou) {
+function calcularSub (cantidad, preciou,itemNumber) {
   calculoSubtotal = parseInt (cantidad) * parseInt (preciou) 
   console.log (calculoSubtotal);
 
   let table = document.getElementById("services");
-  let rows = table.rows;
+  itemNumber = itemNumber.charAt(itemNumber.length-1);
+  console.log (itemNumber)
   if (rowCount < 20) {
-    let selectorr = `subTotal${rowCount + 1}`;
+    let selectorr = `subTotal${itemNumber}`;
 /*     document.querySelector(selectorr).value = calculoSubtotal;*/    
-    var elemento = document.getElementById("subTotal");
+    var elemento = document.getElementById(selectorr);
     elemento.value = calculoSubtotal;
   }
    
@@ -29,8 +30,8 @@ addRowButton.addEventListener("click", function() {
     const precioCell = newRow.insertCell(2);
     const subtotalCell = newRow.insertCell(3);
     conceptoCell.innerHTML = `<input type="text" name="concepto${rowCount + 1}">`;
-    cantidadCell.innerHTML = `<input type="number" name="cantidad${rowCount + 1}" id="cantidad${rowCount + 1}" onchange="calcularSub(this.value, document.getElementById('preciou${rowCount + 1}').value)">`;
-    precioCell.innerHTML = `<input type="number" name="precio${rowCount + 1}" id="preciou${rowCount + 1}" onchange="calcularSub(document.getElementById('cantidad${rowCount + 1}').value, this.value)">`;
+    cantidadCell.innerHTML = `<input type="number" name="cantidad${rowCount + 1}" id="cantidad${rowCount + 1}" onchange="calcularSub(this.value, document.getElementById('preciou${rowCount + 1}').value, this.name)">`;
+    precioCell.innerHTML = `<input type="number" name="precio${rowCount + 1}" id="preciou${rowCount + 1}" onchange="calcularSub(document.getElementById('cantidad${rowCount + 1}').value, this.value, this.name)">`;
     subtotalCell.innerHTML = `<input type="number" name="precio${rowCount + 1}" value="0" id="subTotal${rowCount + 1}" readonly>`;
     rowCount++;
 
@@ -40,7 +41,7 @@ addRowButton.addEventListener("click", function() {
 // guardar datos del formulario
 const form = document.getElementById("form");
 const fechaCoti = document.getElementById("fecha");
-const validoHasta = document.getElementById("valido-hasta");
+const validoHasta = document.getElementById("validohasta");
 const numCotizacion = document.getElementById("numero-cotizacion");
 // datos de la empresa
 const nombreEmpresa = document.getElementById("nombreEmpresa");
@@ -105,7 +106,10 @@ form.addEventListener("submit", function(event) {
  const vTotal = parseInt(sumaPrecios) + parseInt(valorIvaValue);
 //  console.log("Suma de precios:", sumaPrecios);
  
-
+let interpolarMes = "mes"
+if (tiempoProyectoValue <= 1) {
+  interpolarMes = "mes"
+}else { interpolarMes = "meses"}
  //
 
 //   mostrar los resultados 
@@ -127,7 +131,7 @@ form.addEventListener("submit", function(event) {
   <h2>Direccion: ${direccionClienteValue}</h2>
   <h2>Celular: ${celularClienteValue}</h2>
   <h2>Correo: ${correoClienteValue}</h2>
-  <h2>Tiempo del proyecto: ${tiempoProyectoValue}</h2>
+  <h2>Tiempo del proyecto: ${tiempoProyectoValue} ${interpolarMes}</h2>
   <h2>Servicios:</h2>
   <table>
     <tr>
