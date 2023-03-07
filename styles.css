@@ -20,7 +20,7 @@ th {
 }
 
 input{
-  background-color: #bf7237;
+  background-color: #33b3d0;
   border: none;
   border-radius: 0.25rem;
   color: white;
@@ -48,7 +48,7 @@ p {
 }
 
 header {
-  background-color: #bf7237;
+  background-color: #33b3d0;
   padding: 1rem;
   color: white;
   text-align: center;
@@ -118,13 +118,13 @@ input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 16px;
   height: 16px;
-  background-color: #bf7237;
+  background-color: #33b3d0;
   border-radius: 50%;
   margin-top: -6px;
 }
 
 button {
-  background-color: #bf7237;
+  background-color: #33b3d0;
   border: none;
   border-radius: 0.25rem;
   color: white;
@@ -150,7 +150,7 @@ th, td {
 }
 
 th {
-  background-color: #bf7237;
+  background-color: #33b3d0;
   color: white;
 }
 
@@ -159,7 +159,7 @@ tr:nth-child(even) {
 }
 
 tr:last-child td {
-  border-top: 2px solid #bf7237;
+  border-top: 2px solid #33b3d0;
 }
 
 .subtotal {
@@ -199,7 +199,7 @@ table {
   }
   
   input{
-    background-color: #bf7237;
+    background-color: #33b3d0;
     border: none;
     border-radius: 0.25rem;
     color: white;
@@ -227,7 +227,7 @@ table {
   }
   
   header {
-    background-color: #bf7237;
+    background-color: #33b3d0;
     padding: 1rem;
     color: white;
     text-align: center;
@@ -297,13 +297,13 @@ table {
     appearance: none;
     width: 16px;
     height: 16px;
-    background-color: #bf7237;
+    background-color: #33b3d0;
     border-radius: 50%;
     margin-top: -6px;
   }
   
   button {
-    background-color: #bf7237;
+    background-color: #33b3d0;
     border: none;
     border-radius: 0.25rem;
     color: white;
@@ -329,7 +329,7 @@ table {
   }
   
   th {
-    background-color: #bf7237;
+    background-color: #33b3d0;
     color: white;
   }
   
@@ -338,7 +338,7 @@ table {
   }
   
   tr:last-child td {
-    border-top: 2px solid #bf7237;
+    border-top: 2px solid #33b3d0;
   }
   
   .subtotal {
