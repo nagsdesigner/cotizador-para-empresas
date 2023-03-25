@@ -1,0 +1,100 @@
+<link rel="stylesheet" type="text/css" href="styles.css">
+<img src="logo.png" alt="" width="100px" height="100px">
+<h3>Fecha: <span id="fecha"></span></h3>
+<h3>Valido hasta: <span id="valido-hasta"></span></h3>
+<h3>Número de cotización: <span id="numero-cotizacion"></span></h3>
+<div style="margin-top: 20;"></div>
+<div class="parent">
+    <div class="div1">
+        <h1>Información de la empresa:</h1>
+        <h2>Nombre: <span id="nombreEmpresa"></span></h2>
+        <h2>Direccion: <span id="direccion-empresa"></span></h2>
+        <h2>Celular: <span id="celular-empresa"></span></h2>
+        <h2>Correo: <span id="correo-empresa"></span></h2>
+    </div>
+    <div class="div2">
+        <h1>Información del Cliente:</h1>
+        <h2>Nombre: <span id="nombreCliente"></span></h2>
+        <h2>Direccion: <span id="direccion-cliente"></span></h2>
+        <h2>Celular: <span id="celular-cliente"></span></h2>
+        <h2>Correo: <span id="correo-cliente"></span></h2>
+        <h2>Tiempo del proyecto: <span id="tiempoProyecto"></span></h2>
+    </div>
+</div>
+<h2>Servicios:</h2>
+<div id="services"></div>
+<button onclick="window.close()" title="Volver">Volver</button>
+<button title="Descargar">Descargar</button>
+<script>
+    var datos = localStorage.getItem('cotizador');
+    const getData = JSON.parse(datos);
+
+    const fechaCoti = document.getElementById("fecha");
+    const validoHasta = document.getElementById("valido-hasta");
+    const numCotizacion = document.getElementById("numero-cotizacion");
+    // datos de la empresa
+    const nombreEmpresa = document.getElementById("nombreEmpresa");
+    const direccionEmpresa = document.getElementById("direccion-empresa");
+    const celularEmpresa = document.getElementById("celular-empresa");
+    const correoEmpresa = document.getElementById("correo-empresa");
+    // datos del cliente
+    const nombreCliente = document.getElementById("nombreCliente");
+    const direccionCliente = document.getElementById("direccion-cliente");
+    const celularCliente = document.getElementById("celular-cliente");
+    const correoCliente = document.getElementById("correo-cliente");
+
+    const tiempoProyecto = document.getElementById("tiempoProyecto");
+    const valorIva = document.getElementById("valorIva");
+    const servicesData = document.getElementById("services");
+
+    // Se monta la info
+    fechaCoti.innerHTML = getData.fecha;
+    validoHasta.innerHTML = getData.validoHasta;
+    numCotizacion.innerHTML = getData.numeroCotizacion
+    // Empresa
+    nombreEmpresa.innerHTML = getData.empresa
+    direccionEmpresa.innerHTML = getData.direccionEmpresa
+    celularEmpresa.innerHTML = getData.celularEmpresa
+    correoEmpresa.innerHTML = getData.correoEmpresa
+    // Cliente
+    nombreCliente.innerHTML = getData.nombreCliente
+    direccionCliente.innerHTML = getData.direccionCliente
+    celularCliente.innerHTML = getData.celularCliente
+    correoCliente.innerHTML = getData.correoCliente
+    tiempoProyecto.innerHTML = getData.tiempoProyecto
+
+    const result = `
+        <table width="100%">
+            <tr style="text-align:center;">
+            <th>Concepto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+            </tr>
+            ${getData.services.map(o => `
+            <tr  style="text-align:center;">
+                <td>${o.concepto}</td>
+                <td>${o.cantidad}</td>
+                <td>${o.precio}</td>
+                <td>${o.subtotal}</td>
+            </tr>
+            `).join('')}
+            <tr>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th>Total ${getData.sumaPrecios}</th>
+            </tr>
+
+            <tr>
+            <th></th>
+            <th> </th>
+            <th> </th>
+            <th> Iva: ${getData.valorIva} </th>
+            </tr>
+        </table>
+    `;
+    servicesData.innerHTML = result
+
+    console.log(getData);
+</script>
