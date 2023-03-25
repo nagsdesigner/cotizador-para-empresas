@@ -5,66 +5,170 @@
 <h3>Número de cotización: <span id="numero-cotizacion"></span></h3>
 <div style="margin-top: 20;"></div>
 <div class="parent">
-    <div class="div1">
-        <h1>Información de la empresa:</h1>
-        <h2>Nombre: <span id="nombreEmpresa"></span></h2>
-        <h2>Direccion: <span id="direccion-empresa"></span></h2>
-        <h2>Celular: <span id="celular-empresa"></span></h2>
-        <h2>Correo: <span id="correo-empresa"></span></h2>
-    </div>
-    <div class="div2">
-        <h1>Información del Cliente:</h1>
-        <h2>Nombre: <span id="nombreCliente"></span></h2>
-        <h2>Direccion: <span id="direccion-cliente"></span></h2>
-        <h2>Celular: <span id="celular-cliente"></span></h2>
-        <h2>Correo: <span id="correo-cliente"></span></h2>
-        <h2>Tiempo del proyecto: <span id="tiempoProyecto"></span></h2>
-    </div>
+   <div class="div1">
+      <h1>Información de la empresa:</h1>
+      <h2>Nombre: <span id="nombreEmpresa"></span></h2>
+      <h2>Direccion: <span id="direccion-empresa"></span></h2>
+      <h2>Celular: <span id="celular-empresa"></span></h2>
+      <h2>Correo: <span id="correo-empresa"></span></h2>
+   </div>
+   <div class="div2">
+      <h1>Información del Cliente:</h1>
+      <h2>Nombre: <span id="nombreCliente"></span></h2>
+      <h2>Direccion: <span id="direccion-cliente"></span></h2>
+      <h2>Celular: <span id="celular-cliente"></span></h2>
+      <h2>Correo: <span id="correo-cliente"></span></h2>
+      <h2>Tiempo del proyecto: <span id="tiempoProyecto"></span></h2>
+   </div>
 </div>
 <h2>Servicios:</h2>
 <div id="services"></div>
 <button onclick="window.close()" title="Volver">Volver</button>
-<button title="Descargar">Descargar</button>
+<button onclick="downloadPDF()" title="Descargar">Descargar</button>
 <script>
-    var datos = localStorage.getItem('cotizador');
-    const getData = JSON.parse(datos);
+   var datos = localStorage.getItem('cotizador');
+   const getData = JSON.parse(datos);
+   
+   const fechaCoti = document.getElementById("fecha");
+   const validoHasta = document.getElementById("valido-hasta");
+   const numCotizacion = document.getElementById("numero-cotizacion");
+   // datos de la empresa
+   const nombreEmpresa = document.getElementById("nombreEmpresa");
+   const direccionEmpresa = document.getElementById("direccion-empresa");
+   const celularEmpresa = document.getElementById("celular-empresa");
+   const correoEmpresa = document.getElementById("correo-empresa");
+   // datos del cliente
+   const nombreCliente = document.getElementById("nombreCliente");
+   const direccionCliente = document.getElementById("direccion-cliente");
+   const celularCliente = document.getElementById("celular-cliente");
+   const correoCliente = document.getElementById("correo-cliente");
+   
+   const tiempoProyecto = document.getElementById("tiempoProyecto");
+   const valorIva = document.getElementById("valorIva");
+   const servicesData = document.getElementById("services");
+   
+   // Se monta la info
+   fechaCoti.innerHTML = getData.fecha;
+   validoHasta.innerHTML = getData.validoHasta;
+   numCotizacion.innerHTML = getData.numeroCotizacion
+   // Empresa
+   nombreEmpresa.innerHTML = getData.empresa
+   direccionEmpresa.innerHTML = getData.direccionEmpresa
+   celularEmpresa.innerHTML = getData.celularEmpresa
+   correoEmpresa.innerHTML = getData.correoEmpresa
+   // Cliente
+   nombreCliente.innerHTML = getData.nombreCliente
+   direccionCliente.innerHTML = getData.direccionCliente
+   celularCliente.innerHTML = getData.celularCliente
+   correoCliente.innerHTML = getData.correoCliente
+   tiempoProyecto.innerHTML = getData.tiempoProyecto
+   
+   const result = `
+       <table width="100%">
+           <tr style="text-align:center;">
+           <th>Concepto</th>
+           <th>Cantidad</th>
+           <th>Precio</th>
+           <th>Subtotal</th>
+           </tr>
+           ${getData.services.map(o => `
+           <tr  style="text-align:center;">
+               <td>${o.concepto}</td>
+               <td>${o.cantidad}</td>
+               <td>${o.precio}</td>
+               <td>${o.subtotal}</td>
+           </tr>
+           `).join('')}
+           <tr>
+           <th> </th>
+           <th> </th>
+           <th> </th>
+           <th>Total ${getData.sumaPrecios}</th>
+           </tr>
+   
+           <tr>
+           <th></th>
+           <th> </th>
+           <th> </th>
+           <th> Iva: ${getData.valorIva} </th>
+           </tr>
+       </table>
+   `;
+   servicesData.innerHTML = result
+   
+   console.log(getData);
+</script>
+<!-- LIBRERIA JSPDF -->
+<script src="assets/js/jsPDF.js"></script>
+<script>
+   function downloadPDF(){
+    /**
+        * 1. Descargar e importar la librería jsPDF en tu proyecto. Esto se puede hacer mediante
+        *  la creación
+           de una etiqueta script en el archivo html que se utilizará para generar el PDF.
+       */
+       // 2. Crear un objeto jsPDF que se utilizará para el PDF.
+       /**
+        * 3. Luego se debe agregar contenido al PDF utilizando los métodos disponibles en la librería jsPDF. Estos métodos incluyen:
+           - text() : agrega texto al documento PDF.
+           - image(): agrega una imagen al documento PDF.
+           - rect(): dibuja un rectángulo en el documento PDF.
+           - y muchos más.
+       */
+   
+       /**
+        * 4. Guarda el archivo PDF en el directorio especificado. Esto se puede hacer mediante
+        *  el uso del método save(), que permite guardar el archivo PDF en el sistema
+        *  de archivos local del usuario.
+           javascript
+           doc.save("archivo.pdf");
+       */
+      // Crear objeto jsPDF
+        var doc = new jsPDF();
+        var specialElementHandlers = {
+        '#editor': function (element, renderer) {
+            return true;
+        }
+        };
+        // Datos para ser capturados
+        var datos = localStorage.getItem('cotizador');
+        const getData = JSON.parse(datos);
 
-    const fechaCoti = document.getElementById("fecha");
-    const validoHasta = document.getElementById("valido-hasta");
-    const numCotizacion = document.getElementById("numero-cotizacion");
-    // datos de la empresa
-    const nombreEmpresa = document.getElementById("nombreEmpresa");
-    const direccionEmpresa = document.getElementById("direccion-empresa");
-    const celularEmpresa = document.getElementById("celular-empresa");
-    const correoEmpresa = document.getElementById("correo-empresa");
-    // datos del cliente
-    const nombreCliente = document.getElementById("nombreCliente");
-    const direccionCliente = document.getElementById("direccion-cliente");
-    const celularCliente = document.getElementById("celular-cliente");
-    const correoCliente = document.getElementById("correo-cliente");
-
-    const tiempoProyecto = document.getElementById("tiempoProyecto");
-    const valorIva = document.getElementById("valorIva");
-    const servicesData = document.getElementById("services");
-
-    // Se monta la info
-    fechaCoti.innerHTML = getData.fecha;
-    validoHasta.innerHTML = getData.validoHasta;
-    numCotizacion.innerHTML = getData.numeroCotizacion
-    // Empresa
-    nombreEmpresa.innerHTML = getData.empresa
-    direccionEmpresa.innerHTML = getData.direccionEmpresa
-    celularEmpresa.innerHTML = getData.celularEmpresa
-    correoEmpresa.innerHTML = getData.correoEmpresa
-    // Cliente
-    nombreCliente.innerHTML = getData.nombreCliente
-    direccionCliente.innerHTML = getData.direccionCliente
-    celularCliente.innerHTML = getData.celularCliente
-    correoCliente.innerHTML = getData.correoCliente
-    tiempoProyecto.innerHTML = getData.tiempoProyecto
-
-    const result = `
-        <table width="100%">
+        // Empresa
+        nombreEmpresa.innerHTML = getData.empresa
+        direccionEmpresa.innerHTML = getData.direccionEmpresa
+        celularEmpresa.innerHTML = getData.celularEmpresa
+        correoEmpresa.innerHTML = getData.correoEmpresa
+        // Cliente
+        nombreCliente.innerHTML = getData.nombreCliente
+        direccionCliente.innerHTML = getData.direccionCliente
+        celularCliente.innerHTML = getData.celularCliente
+        correoCliente.innerHTML = getData.correoCliente
+        tiempoProyecto.innerHTML = getData.tiempoProyecto
+        
+        headerContent = `
+            <div>Fecha: ${getData.fecha}</div>
+            <div>Valido hasta: ${getData.validoHasta}</div>
+            <div>Número de cotización: ${getData.numeroCotizacion}</div>
+            <p>
+                <div><h1>Información de la Empresa</h1></div>
+                <div>Nombre: ${getData.empresa}</div>
+                <div>Direccion: ${getData.direccionEmpresa}</div>
+                <div>Celular: ${getData.celularEmpresa}</div>
+                <div>Correo: ${getData.correoEmpresa}</div>
+            </p>
+            <p>
+                <div><h1>Información del Cliente</h1></div>
+                <div>Nombre: ${getData.nombreCliente}</div>
+                <div>Direccion: ${getData.direccionCliente}</div>
+                <div>Celular: ${getData.celularCliente}</div>
+                <div>Correo: ${getData.correoCliente}</div>
+                <div>Tiempo del proyecto: ${getData.tiempoProyecto}</div>
+            </p>
+        `;
+        
+        headerContent += `
+        <table width="1024px">
             <tr style="text-align:center;">
             <th>Concepto</th>
             <th>Cantidad</th>
@@ -83,18 +187,28 @@
             <th> </th>
             <th> </th>
             <th> </th>
-            <th>Total ${getData.sumaPrecios}</th>
+            <th>SubTotal ${getData.sumaPrecios}</th>
             </tr>
-
+        
             <tr>
             <th></th>
             <th> </th>
             <th> </th>
             <th> Iva: ${getData.valorIva} </th>
             </tr>
+            <tr>
+            <th></th>
+            <th> </th>
+            <th> </th>
+            <th> Total: ${(getData.sumaPrecios / 100 * getData.valorIva ) + getData.sumaPrecios } </th>
+            </tr>
         </table>
-    `;
-    servicesData.innerHTML = result
-
-    console.log(getData);
+        `;
+        
+        doc.fromHTML(headerContent, 30, 8, {
+            'width': 1024,
+                'elementHandlers': specialElementHandlers
+        });
+        doc.save(`Cotizador ${getData.empresa}.pdf`);
+        }
 </script>
