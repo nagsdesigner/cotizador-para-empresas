@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Formulario para empresa</title>
+  <title>Cotizador</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body id="body" class="printable-content">
      <!-- Contenido original del body -->
      <div id="originalContent">
-            <h1>Cotizador</h1>
+            <h1 style="text-align: center;">
+              Crea tu cotización
+            </h1>
+            <br>
+            <br>
+            <h1>Ingresa los detalles a cotizar y en segundos tendrás un documento PDF profesional para enviar a tu cliente.</h1>
+            <br>
             <form method="post" id="form">
               <fieldset>
                 <legend>Información de la cotización</legend>
@@ -118,7 +124,6 @@
                     <label for="enviar">&nbsp;</label>
                     <input type="submit" value="Generar" onclick="switchBodyOn()">
                   </div>
-                  
                 </div>
                 <!-- <input type="submit" value="Enviar" onclick="replaceContent()"> -->
             </form>
