@@ -8,7 +8,7 @@ function calcularSub (cantidad, preciou,itemNumber) {
   console.log (calculoSubtotal);
 
   let table = document.getElementById("services");
-  itemNumber = itemNumber.charAt(itemNumber.length-1);
+  itemNumber = itemNumber.match(/\d+/)[0];
   console.log (itemNumber)
   if (rowCount < 20) {
     let selectorr = `subTotal${itemNumber}`;
