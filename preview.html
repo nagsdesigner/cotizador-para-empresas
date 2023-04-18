@@ -24,7 +24,8 @@
 <h2>Servicios:</h2>
 <div id="services"></div>
 <button onclick="window.close()" title="Volver">Volver</button>
-<button onclick="downloadPDF()" title="Descargar">Descargar</button>
+<button onclick="window.print()" title="Descargar">Descargar</button>
+<!-- funcion "downloadPDF()" opcionar al window.print -->
 <script>
    var datos = localStorage.getItem('cotizador');
    const getData = JSON.parse(datos);
