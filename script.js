@@ -56,6 +56,8 @@ const nombreEmpresa = document.getElementById("nombreEmpresa");
 const direccionEmpresa = document.getElementById("direccion-empresa");
 const celularEmpresa = document.getElementById("celular-empresa");
 const correoEmpresa = document.getElementById("correo-empresa");
+const numIdentificacionEmpresa = document.getElementById("numid-empresa");
+const tipoidEmpresa = document.getElementById("tipoid-empresa");
 // datos del cliente
 const nombreCliente = document.getElementById("nombreCliente");
 const direccionCliente = document.getElementById("direccion-cliente");
